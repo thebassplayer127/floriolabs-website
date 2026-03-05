@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlorioLabs | Coming Soon</title>
+    <title>FlorioLabs | Engineering & Hardware</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
@@ -24,7 +24,7 @@
         .grid-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            perspective: 600px; /* Creates the 3D depth */
+            perspective: 600px;
             z-index: -1;
             overflow: hidden;
         }
@@ -37,18 +37,15 @@
                 linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
             background-size: 40px 40px;
-            /* Tilts the grid and pushes it back */
             transform: rotateX(60deg) translateY(0);
             animation: grid-move 2s linear infinite;
         }
 
-        /* Moves the grid toward the camera seamlessly */
         @keyframes grid-move {
             0% { transform: rotateX(60deg) translateY(0); }
-            100% { transform: rotateX(60deg) translateY(40px); } /* matches grid size */
+            100% { transform: rotateX(60deg) translateY(40px); }
         }
 
-        /* Overlay fade so the grid fades out at the top of the screen */
         .grid-fade {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -65,6 +62,7 @@
             display: inline-block; border: 1px solid #333; padding: 0.75rem 1.5rem;
             border-radius: 4px; background: rgba(255, 255, 255, 0.05);
             font-family: monospace; font-size: 0.9rem; color: #00ffcc; letter-spacing: 1px;
+            margin-bottom: 3rem;
         }
 
         .pulse {
@@ -76,6 +74,28 @@
             0% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(0, 255, 204, 0); }
             100% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); }
+        }
+
+        /* Terminal Navigation Menu */
+        .terminal-nav {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            font-family: monospace;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            flex-wrap: wrap; /* Allows wrapping on smaller mobile screens */
+        }
+
+        .terminal-nav a {
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-nav a:hover {
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
         }
     </style>
 </head>
@@ -91,6 +111,12 @@
         
         <div class="status-box">
             <span class="pulse"></span> DEPLOYMENT PENDING... [COMING SOON]
+        </div>
+
+        <div class="terminal-nav">
+            <a href="products/C4X.html">[ C4-X DEVICE ]</a>
+            <a href="devlog/index.html">[ ENGINEERING LOGS ]</a>
+            <a href="bug-report.html">[ SYSTEM DIAGNOSTICS ]</a>
         </div>
     </div>
 </body>
