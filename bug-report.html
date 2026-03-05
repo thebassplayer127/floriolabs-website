@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Bug Report | FlorioLabs</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0d0d0d; color: #f0f0f0; padding: 4rem 2rem; }
+        
+        /* Static Grid Background */
+        .background-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px; z-index: -1;
+        }
+        
+        .container { max-width: 600px; margin: 0 auto; }
+        
+        /* Header */
+        nav { margin-bottom: 3rem; font-family: monospace; font-size: 0.9rem; }
+        nav a { color: #00ffcc; text-decoration: none; margin-right: 1rem; }
+        h1 { font-size: 3rem; font-weight: 300; text-transform: uppercase; margin-bottom: 0.5rem; }
+        h1 span { color: #00ffcc; font-weight: 600; }
+        .subtitle { color: #888; margin-bottom: 3rem; font-size: 1.1rem; }
+
+        /* Form Styling */
+        form {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        
+        label { font-family: monospace; color: #00ffcc; font-size: 0.9rem; letter-spacing: 1px; }
+        
+        input, select, textarea {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #00ffcc;
+        }
+
+        textarea { resize: vertical; min-height: 150px; }
+
+        /* Submit Button */
+        button {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: transparent;
+            color: #00ffcc;
+            border: 1px solid #00ffcc;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        button:hover {
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+    
+    <div class="container">
+        <nav>
+            <a href="index.html">&lt; BACK TO HOME</a>
+        </nav>
+
+        <h1>System <span>Diagnostics</span></h1>
+        <p class="subtitle">Submit a bug report or hardware issue directly to our engineering team.</p>
+
+        <form action="https://formspree.io/f/xdawnezg" method="POST">
+            
+            <div class="form-group">
+                <label for="email">CONTACT EMAIL (OPTIONAL)</label>
+                <input type="email" id="email" name="email" placeholder="operator@domain.com">
+            </div>
+
+            <div class="form-group">
+                <label for="product">HARDWARE / SOFTWARE AFFECTED</label>
+                <select id="product" name="product" required>
+                    <option value="" disabled selected>Select a system...</option>
+                    <option value="c4-x">C4-X Tactical Device</option>
+                    <option value="scoreboard">Airsoft Scoreboard Node</option>
+                    <option value="web-ui">Web UI / Control Panel</option>
+                    <option value="other">Other / General Inquiry</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="firmware">FIRMWARE VERSION (IF KNOWN)</label>
+                <input type="text" id="firmware" name="firmware" placeholder="e.g., v1.0.5">
+            </div>
+
+            <div class="form-group">
+                <label for="description">ISSUE DESCRIPTION</label>
+                <textarea id="description" name="description" placeholder="Please describe the malfunction, steps to reproduce, and any error codes displayed..." required></textarea>
+            </div>
+
+            <button type="submit">TRANSMIT REPORT</button>
+        </form>
+    </div>
+</body>
+</html>

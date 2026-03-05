@@ -3,113 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sector 4 Tactical Prop | FlorioLabs</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0d0d0d; color: #f0f0f0; padding: 4rem 2rem; }
-        .background-grid {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px; z-index: -1;
-        }
-        .container { max-width: 800px; margin: 0 auto; }
-        
-        /* Header */
-        nav { margin-bottom: 3rem; font-family: monospace; font-size: 0.9rem; }
-        nav a { color: #00ffcc; text-decoration: none; margin-right: 1rem; }
-        h1 { font-size: 3rem; font-weight: 300; text-transform: uppercase; margin-bottom: 0.5rem; }
-        h1 span { color: #00ffcc; font-weight: 600; }
-        .subtitle { color: #888; margin-bottom: 3rem; font-size: 1.1rem; }
-
-        /* Dropdowns (Accordions) */
-        details {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #333;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-        summary {
-            padding: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '+'; color: #00ffcc; font-size: 1.5rem; }
-        details[open] summary::after { content: '-'; }
-        
-        .content {
-            padding: 0 1.5rem 1.5rem 1.5rem;
-            color: #ccc;
-            line-height: 1.6;
-        }
-        .content ul { margin-left: 1.5rem; margin-top: 1rem; }
-        .content li { margin-bottom: 0.5rem; }
-        
-        /* Download Button */
-        .btn-download {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            background: transparent;
-            color: #00ffcc;
-            border: 1px solid #00ffcc;
-            text-decoration: none;
-            border-radius: 4px;
-            font-family: monospace;
-            transition: all 0.2s;
-        }
-        .btn-download:hover { background: rgba(0, 255, 204, 0.1); }
-    </style>
-</head>
+    <title>C4-X Tactical Device | FlorioLabs</title>
+    </head>
 <body>
-    <div class="background-grid"></div>
-    
     <div class="container">
-        <nav>
-            <a href="../index.html">&lt; BACK TO HOME</a>
-        </nav>
+        <nav><a href="../index.html">&lt; BACK TO HOME</a></nav>
 
-        <h1>Sector 4 <span>Tactical Prop</span></h1>
+        <h1>C4-X <span>Tactical Device</span></h1>
         <p class="subtitle">Advanced logic board for scenario-based gameplay. ESP32 powered.</p>
 
         <details>
             <summary>Operator Manual</summary>
             <div class="content">
-                <p>Instructions for field use and gameplay modes.</p>
-                <ul>
-                    <li><strong>Arming Sequence:</strong> Enter the designated code via the keypad.</li>
-                    <li><strong>RFID Integration:</strong> Scan admin card to bypass countdown.</li>
-                    <li><strong>Volume Control:</strong> Adjust via settings to ensure audio cues are heard during gameplay.</li>
-                </ul>
-            </div>
+                </div>
         </details>
 
         <details>
             <summary>Hardware Pinout Documentation</summary>
             <div class="content">
-                <p>Reference guide for custom PCB integration and wiring.</p>
-                <ul>
-                    <li><strong>Microcontroller:</strong> ESP32 Core</li>
-                    <li><strong>Audio Stage:</strong> TPA3110 / PAM8403 Amplifiers</li>
-                    <li><strong>Display:</strong> I2C LCD Interface</li>
-                    <li><strong>Lighting:</strong> WS2811 Addressable LED Data Line</li>
-                    <li><strong>RFID:</strong> SPI Interface connection</li>
-                </ul>
-            </div>
+                </div>
         </details>
 
         <details>
             <summary>Firmware Updates</summary>
             <div class="content">
-                <p>Current Stable Release: <strong>v1.0.5</strong></p>
-                <p>To manually flash the device, download the `.bin` file below and upload via the web interface. Note: Ensure device is connected to Wi-Fi for automatic OTA updates.</p>
+                <p>Current Stable Release: <strong>v1.0.0</strong></p>
                 <a href="../firmware/update.bin" class="btn-download" download>DOWNLOAD UPDATE.BIN</a>
             </div>
         </details>
