@@ -84,7 +84,7 @@
             font-family: monospace;
             font-size: 0.9rem;
             letter-spacing: 1px;
-            flex-wrap: wrap; /* Allows wrapping on smaller mobile screens */
+            flex-wrap: wrap;
         }
 
         .terminal-nav a {
@@ -96,6 +96,22 @@
         .terminal-nav a:hover {
             color: #00ffcc;
             text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            z-index: 1;
+            font-family: monospace;
+            color: #444;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+
+        footer a:hover {
+            color: #00ffcc;
         }
     </style>
 </head>
@@ -119,5 +135,12 @@
             <a href="bug-report.html">[ SYSTEM DIAGNOSTICS ]</a>
         </div>
     </div>
+
+    <footer>
+        &copy; 2026 Florio Labs&trade;.<br>
+        <span style="font-size: 0.75rem; margin-top: 10px; display: inline-block;">
+            Florio Labs is an AFX Labs LLC company. <a href="https://floriomedia.com" target="_blank" style="color: inherit; text-decoration: underline;">Floriomedia.com</a>
+        </span>
+    </footer>
 </body>
 </html>
