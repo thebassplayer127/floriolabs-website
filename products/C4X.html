@@ -172,7 +172,7 @@
         <details>
             <summary>Firmware Updates</summary>
             <div class="content">
-                <p>Current Stable Release: <strong>v1.0.0</strong></p>
+                <p>Current Stable Release: <strong id="firmware-version">Loading...</strong></p>
                 <a href="../firmware/update.bin" class="btn-download" download>DOWNLOAD UPDATE.BIN</a>
             </div>
         </details>
@@ -184,5 +184,24 @@
             Florio Labs is an AFX Labs LLC company. <a href="https://floriomedia.com" target="_blank" style="color: inherit; text-decoration: underline;">Floriomedia.com</a>
         </span>
     </footer>
+
+    <script>
+        // Fetch firmware version from update.json
+        fetch('../firmware/update.json')
+            .then(response => response.json())
+            .then(data => {
+                const versionElement = document.getElementById('firmware-version');
+                if (versionElement && data.version) {
+                    versionElement.textContent = 'v' + data.version;
+                }
+            })
+            .catch(error => {
+                console.error('Failed to fetch firmware version:', error);
+                const versionElement = document.getElementById('firmware-version');
+                if (versionElement) {
+                    versionElement.textContent = 'v1.0.0';
+                }
+            });
+    </script>
 </body>
 </html>
