@@ -1,0 +1,11 @@
+{
+  "base": {
+    "version": "0.0.11",
+    "url": "https://floriolabs.com/devices/flolink/firmware/FloLink_Base_v0.0.11.bin",
+    "release_notes": "Added AJA KUMO support and bug fixes."
+  },
+  "remote": {
+    "version": "0.0.7",
+    "url": "https://floriolabs.com/devices/flolink/firmware/FloLink_Remote_v0.0.7.bin"
+  }
+}
