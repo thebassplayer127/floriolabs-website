@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlorioLabs | Store & Pre-Orders</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body {
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        /* 3D Moving Grid */
+        .grid-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            perspective: 600px;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-grid {
+            position: absolute;
+            width: 200%; height: 200%;
+            left: -50%; top: -10%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+            background-size: 40px 40px;
+            transform: rotateX(60deg) translateY(0);
+            animation: grid-move 2s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% { transform: rotateX(60deg) translateY(0); }
+            100% { transform: rotateX(60deg) translateY(40px); }
+        }
+
+        .grid-fade {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #0d0d0d 20%, transparent 100%);
+            z-index: 0;
+        }
+
+        .container { max-width: 1100px; padding: 2rem; z-index: 1; width: 100%; }
+        
+        /* Navigation */
+        nav { margin-bottom: 2rem; font-family: monospace; font-size: 0.9rem; }
+        nav a { color: #00ffcc; text-decoration: none; transition: all 0.3s ease; }
+        nav a:hover { color: #fff; text-shadow: 0 0 10px rgba(0, 255, 204, 0.4); }
+        
+        h1 { font-size: 3rem; letter-spacing: 4px; margin-bottom: 0.5rem; font-weight: 300; text-transform: uppercase; }
+        h1 span { color: #00ffcc; font-weight: 600; }
+        .subtitle { color: #888; font-size: 1.1rem; margin-bottom: 4rem; line-height: 1.5; }
+
+        /* Store Categories */
+        .category-title {
+            font-family: monospace;
+            color: #00ffcc;
+            font-size: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Product Grid */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            background: #111;
+            object-fit: cover;
+            border-bottom: 1px solid #333;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-img {
+            opacity: 1;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .price {
+            font-family: monospace;
+            color: #00ffcc;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .desc {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn-buy {
+            display: block;
+            text-align: center;
+            background: rgba(0, 255, 204, 0.1);
+            color: #00ffcc;
+            text-decoration: none;
+            font-family: monospace;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 0.75rem;
+            border: 1px solid #00ffcc;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            background: #00ffcc;
+            color: #0d0d0d;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+        }
+
+        .digital-badge {
+            display: inline-block;
+            background: #333;
+            color: #aaa;
+            font-family: monospace;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            font-family: monospace;
+            color: #444;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="background-grid"></div>
+        <div class="grid-fade"></div>
+    </div>
+    
+    <div class="container">
+        <nav><a href="index.html">&lt; RETURN TO MAIN TERMINAL</a></nav>
+
+        <h1>FlorioLabs <span>Store</span></h1>
+        <p class="subtitle">Secure checkout provided by Stripe. Hardware ships worldwide.</p>
+
+        <h2 class="category-title">Complete Hardware Kits</h2>
+        <div class="store-grid">
+            
+            <div class="product-card">
+                <img src="devices/flolink/images/placeholder.jpg" alt="FloLink Pro Bundle" class="product-img">
+                <div class="product-info">
+                    <h3>FloLink Pro Bundle</h3>
+                    <p class="price">$---.00</p>
+                    <p class="desc">The ultimate routing bundle. Includes the Base Unit, one Remote, and the Pro Upgrade unlocked out of the box.</p>
+                    <a href="https://buy.stripe.com/test_8x27sDcwk3Yr4LVcjYawo03" class="btn-buy">PRE-ORDER KIT</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="devices/flolink/images/placeholder.jpg" alt="FloLink Bundle - Blackmagic" class="product-img">
+                <div class="product-info">
+                    <h3>FloLink Bundle (Blackmagic)</h3>
+                    <p class="price">$---.00</p>
+                    <p class="desc">Includes the Blackmagic VideoHub compatible Base Unit and one physical Remote.</p>
+                    <a href="https://buy.stripe.com/test_00wcMXeEs0Mf6U34Rwawo05" class="btn-buy">PRE-ORDER KIT</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="devices/flolink/images/placeholder.jpg" alt="FloLink Bundle - AJA" class="product-img">
+                <div class="product-info">
+                    <h3>FloLink Bundle (AJA)</h3>
+                    <p class="price">$---.00</p>
+                    <p class="desc">Includes the AJA compatible Base Unit and one physical Remote.</p>
+                    <a href="https://buy.stripe.com/test_dRm8wHaoc3Yrcen97Mawo06" class="btn-buy">PRE-ORDER KIT</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="category-title">Base Units & Peripherals</h2>
+        <div class="store-grid">
+            
+            <div class="product-card">
+                <img src="devices/flolink/images/placeholder.jpg" alt="FloLink Base Unit - Blackmagic" class="product-img">
+                <div class="product-info">
+                    <h3>FloLink Base Unit (Blackmagic)</h3>
+                    <p class="price">$---.00</p>
+                    <p class="desc">The core wireless Transmitter. Plugs directly into your network to enable communication with Blackmagic video routers.</p>
+                    <a href="https://buy.stripe.com/test_14A14feEs52v1zJ0Bgawo00" class="btn-buy">PRE-ORDER BASE</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="devices/flolink/images/placeholder.jpg" alt="FloLink Base Unit - AJA" class="product-img">
+                <div class="product-info">
+                    <h3>FloLink Base Unit (AJA)</h3>
+                    <p class="price">$---.00</p>
+                    <p class="desc">The core wireless Transmitter. Plugs directly into your network to enable communication with AJA video routers.</p>
+                    <a href="https://buy.stripe.com/test_cNibIT2VKfH9cen2Joawo01" class="btn-buy">PRE-ORDER BASE</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="devices/flolink/images/FloLink_Remote_mockup.jpg" alt="FloLink Remote" class="product-img">
+                <div class="product-info">
+                    <h3>FloLink Remote</h3>
+                    <p class="price">$---.00</p>
+                    <p class="desc">Add wireless, tactile control to your video routing setup. Features configurable, glowing silicone buttons and over 1km range.</p>
+                    <a href="https://buy.stripe.com/test_bJe4gr67WeD53HRbfUawo02" class="btn-buy">PRE-ORDER REMOTE</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="category-title">System Upgrades</h2>
+        <div class="store-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 400px)); justify-content: start;">
+            
+            <div class="product-card">
+                <div class="product-img" style="background: #00221c; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #00ffcc;">
+                    <span style="color: #00ffcc; font-family: monospace; font-size: 1.5rem; letter-spacing: 2px;">PRO_UNLOCK_KEY</span>
+                </div>
+                <div class="product-info">
+                    <span class="digital-badge">DIGITAL DELIVERY</span>
+                    <h3>FloLink Pro Upgrade</h3>
+                    <p class="price">$---.00</p>
+                    <p class="desc">Unlock expanded multi-device control by interfacing with both AJA and Blackmagic devices on the same Base Unit. Requires your device's MAC Address at checkout. Key delivered instantly via email.</p>
+                    <a href="https://buy.stripe.com/test_fZu6ozdAo52v1zJabQawo04" class="btn-buy">PURCHASE KEY</a>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Florio Labs&trade;. Florio Labs is an AFX Labs LLC company.
+    </footer>
+</body>
+</html>
